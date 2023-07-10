@@ -55,6 +55,11 @@
 			<artifactId>hibernate-c3p0</artifactId>
 			<version>4.3.6.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.6.9</version>
+		</dependency>
 	</dependencies>
 
 	<build>
