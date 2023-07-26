@@ -1,6 +1,6 @@
-package User.Config;
+package com.esprit.socialnetwork.User.Config;
 
-import User.jwtService;
+import com.esprit.socialnetwork.User.jwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,7 +34,7 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request,response);
         }
          JwtToken=authHeader.substring(7);
-        User.jwtService jwstService;
+        com.esprit.socialnetwork.User.jwtService jwstService;
         Useremail= jwtService.extractUserEmail(JwtToken);//to do extract usermailtoken
         if (Useremail!=null && SecurityContextHolder.getContext().getAuthentication()==null){
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(Useremail);
