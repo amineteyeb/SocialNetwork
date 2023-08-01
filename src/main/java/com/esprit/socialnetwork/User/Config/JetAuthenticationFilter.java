@@ -1,12 +1,10 @@
 package com.esprit.socialnetwork.User.Config;
 
-import com.esprit.socialnetwork.User.jwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,12 +15,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 @Component
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class JwtAuthentificationFilter extends OncePerRequestFilter {
-    @Autowired
-    private jwtService jwtService;
-    @Autowired
-    private final  UserDetailsService userDetailsService;
+
+    private final jwtService jwtService;
+
+    private final   UserDetailsService userDetailsService;
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -34,8 +32,8 @@ public class JwtAuthentificationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request,response);
         }
          JwtToken=authHeader.substring(7);
-        com.esprit.socialnetwork.User.jwtService jwstService;
-        Useremail= jwtService.extractUserEmail(JwtToken);//to do extract usermailtoken
+        com.esprit.socialnetwork.User.Config.jwtService jwstService;
+        Useremail= jwtService.extractUsername(JwtToken);//to do extract usermailtoken
         if (Useremail!=null && SecurityContextHolder.getContext().getAuthentication()==null){
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(Useremail);
             if (jwtService.isTokenValid(JwtToken,userDetails)){
