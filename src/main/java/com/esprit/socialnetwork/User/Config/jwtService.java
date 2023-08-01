@@ -1,4 +1,4 @@
-package com.esprit.socialnetwork.User;
+package com.esprit.socialnetwork.User.Config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

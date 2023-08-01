@@ -1,21 +1,30 @@
 package com.esprit.socialnetwork.User;
 
+import com.esprit.socialnetwork.Client.Client;
+import com.esprit.socialnetwork.Seller.Seller;
+import jakarta.persistence.*;
+
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
-import javax.persistence.*;
+
 import java.util.Collection;
 import java.util.List;
 
 @Data
-@Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Getter
+@Setter
+@Table(name = "_user")
 public class User implements UserDetails {
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long id;
     private String firstName;
     private String lastName;
@@ -28,6 +37,11 @@ public class User implements UserDetails {
     private String PasswordToken;
     @Enumerated(EnumType.STRING)
     private  RoleEnum role;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Seller seller;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Client client;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

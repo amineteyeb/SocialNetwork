@@ -11,7 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.esprit.socialnetwork.User.User;
+
 
 import java.io.IOException;
 
@@ -21,7 +21,7 @@ public class authService {
     private final UserRepository repository;
 
     private final PasswordEncoder passwordEncoder;
-    private final jwtService jwtService;
+    private final com.esprit.socialnetwork.User.Config.jwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
@@ -59,7 +59,19 @@ public class authService {
                 .refreshToken(refreshToken)
                 .build();
     }
+    public User getuser(AuthenticationRequest request) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()
+                )
+        );
+        var user = repository.findByEmail(request.getEmail())
+                .orElseThrow();
 
+
+        return user;
+    }
     /*private void saveUserToken(User user, String jwtToken) {
         var token = Token.builder()
                 .user(user)
