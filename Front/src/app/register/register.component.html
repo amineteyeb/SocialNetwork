@@ -1,0 +1,46 @@
+<body>
+<div class="container" id="container">
+    <div class="form-container sign-ip-container">
+		<form name="signUpForm" (ngSubmit)="signUpForm.valid && onSubmit()" #signUpForm="ngForm" novalidate>
+			<h1>Create Account</h1>
+			<span>Register Account</span>
+			
+			  <input matInput [(ngModel)]="signUpFormModel.firstname" name="firstname" required placeholder="First Name" />
+			
+			
+			  <input matInput [(ngModel)]="signUpFormModel.lastname" name="lastname" required placeholder="Last Name" />
+			
+			
+			  <input matInput [(ngModel)]="signUpFormModel.email" name="email" required placeholder="Email" type="email" />
+			
+			
+			  <input matInput [(ngModel)]="signUpFormModel.password" name="password" type="password" required placeholder="Password" />
+			
+			<mat-form-field>
+			  <mat-select [(ngModel)]="signUpFormModel.role" name="role" required  placeholder="Choose role">
+				<mat-option value="SELLER">Seller</mat-option>
+				<mat-option value="CLIENT">Client</mat-option>
+			  </mat-select>
+			</mat-form-field>
+			<button mat-raised-button color="#FF416C" type="submit">Register me</button>
+		  </form>
+        </div>
+          <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn" >Sign In</button>
+                </div>
+                
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Already Have an Account ? Login</p>
+                    <button routerLink="../login" class="ghost" id="login">Login
+                    </button>
+                </div>
+            </div>
+        </div>
+  
+        </div>
+	</body>
