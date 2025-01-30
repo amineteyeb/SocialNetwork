@@ -1,0 +1,59 @@
+<body>
+<div class="container" id="container">
+
+	>
+	<div class="form-container sign-in-container">
+		<form *ngIf="  !isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+			<h1>Sign in</h1>
+		
+			<span>Sig in with an existing account</span>
+      <input matInput autoComplete="email" name="email" [(ngModel)]="form.email" required #email="ngModel" placeholder="Email"  />
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="email.errors && f.submitted"
+      >
+        Email is required!
+      </div>
+			<input matInput autoComplete="current-password" placeholder="Password" type="password" name="password"
+    [(ngModel)]="form.password"
+    required
+    #password="ngModel" />
+<div
+class="alert alert-danger"
+role="alert"
+*ngIf="password.errors && f.submitted"
+>
+<div *ngIf="password.errors['required']">Password is required</div>
+    </div>
+			<a href="#">Forgot your password?</a>
+      <div class="form-group">
+        <div
+          class="alert alert-danger"
+          role="alert"
+          *ngIf="f.submitted && isLoginFailed"
+        >
+          Login failed: {{ errorMessage }}
+        </div>
+    </div>
+			<button>Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn" >Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button routerLink="../register" class="ghost" id="signUp">Sign Up
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>

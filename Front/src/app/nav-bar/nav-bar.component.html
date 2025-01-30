@@ -1,0 +1,26 @@
+<!-- Include this HTML in your template -->
+<div class="header-section">
+  <div class="logo">
+    <img src="../../assets/1.png" alt="Logo" class="logo-image">
+  </div>
+  <nav class="navbar">
+    <a class="nav-link" routerLink="option1">Home</a>
+    <a *ngIf="!sellerflag" class="nav-link" (click)="navigateToProductsOwner()">Products</a>
+    <a class="nav-link" routerLink="option4">Option</a>
+    <a *ngIf="sellerflag" class="nav-link" (click)="navigateToMyShop()">My Shop</a>
+    <a *ngIf="!sellerflag" class="nav-link" routerLink="option3">Create My Shop</a>
+  </nav>
+  <div class="logo-image">
+    <a [target]="user">{{user.email}} </a>
+    <mat-icon></mat-icon>
+  </div>
+  <div class="logout">
+    <button mat-fab extended color="accent" (click)="onLogout()">
+      <div class="logout-content">
+        <mat-icon>logout</mat-icon>
+        <span class="logout-text">Logout</span>
+      </div>
+    </button>
+  </div>
+</div>
+<router-outlet></router-outlet>
