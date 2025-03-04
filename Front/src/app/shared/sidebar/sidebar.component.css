@@ -1,0 +1,137 @@
+/* Close Button */
+.hamburger_close {
+    align-self: flex-end;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 5px;
+    color: #666;
+    transition: 0.3s ease-in-out;
+}
+
+.hamburger_close:hover {
+    color: #333;
+}
+
+/* Logo Section */
+.logo {
+    display: flex;
+    justify-content: center; /* Center the logo */
+    align-items: center;
+    padding: 15px 0;
+}
+
+.logo .brand {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--bs-secondary);
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease;
+}
+
+.logo .brand:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.logo .brand span {
+    color: var(--bs-primary);
+}
+
+/* Profile Section */
+.sidebar-profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid var(--bs-primary);
+    object-fit: cover;
+}
+
+.profile-details {
+    margin-top: 10px;
+}
+
+.profile-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.profile-role {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+    background-color: var(--bs-primary);
+    padding: 5px 10px;
+    border-radius: 12px;
+    text-transform: capitalize;
+    margin-top: 5px;
+}
+
+/* Navigation */
+.menu_top_nav {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: left; /* Align list items to the left */
+    padding-left: 20px; /* Add left padding */
+}
+
+.menu_item {
+    margin: 5px 0;
+}
+
+.menu_item a {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 8px 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--bs-secondary-color);
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    border-radius: 5px;
+}
+
+.menu_item a i {
+    margin-right: 12px;
+    font-size: 16px;
+    color: var(--bs-primary);
+}
+
+.menu_item a:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--bs-primary);
+}
+.profile-status {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 12px;
+    text-transform: capitalize;
+    margin-top: 5px;
+}
+
+/* Seller Badge */
+.badge-seller {
+    background-color: #ff9800;
+    color: white;
+}
+
+/* Client Badge */
+.badge-client {
+    background-color: #4caf50;
+    color: white;
+}

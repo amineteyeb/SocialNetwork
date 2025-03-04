@@ -67,7 +67,7 @@ export class ProductAddComponent implements OnInit {
     this.product.available=true;
     if (this.mySellerDetails) {
    
-      this.product.shopId = this.mySellerDetails.shop_id;
+      this.product.shopId = this.user.shop_id;
     } else { console.log('Error fetching seller details')
       // Handle the case where mySellerDetails is null
       // For example, you can set a default sellerId or show an error message

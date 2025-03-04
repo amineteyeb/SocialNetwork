@@ -15,13 +15,16 @@ import { OrderConfirmationComponent } from './order-confirmation/order-confirmat
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { ProductResolverService } from './service/order/ProductResolverService';
+import { SignPageGuard } from './service/auth/SignPageGuard';
+import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   { path: 'products', component: AllProductsComponent, canActivate: [AuthGuardService] },
+  { path: 'test', component: TestComponent, canActivate: [AuthGuardService] },
   { path: 'myshop', component: MyShopComponent, canActivate: [AuthGuardService] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuardService] },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent ,canActivate: [SignPageGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [SignPageGuard] },
   { path: 'product', component: ProductAddComponent },
   {
     path: 'productViewDetails/:productId',

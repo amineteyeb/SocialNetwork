@@ -5,7 +5,11 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "outDir": "./out-tsc/app",
-    "types": ["node","jasmine"],
+    "types": [
+      "node",
+      "jasmine",
+      "@angular/localize"
+    ],
 
     
   },

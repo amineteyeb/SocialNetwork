@@ -43,6 +43,8 @@ import { OrderConfirmationComponent } from './order-confirmation/order-confirmat
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { SharedModule } from './shared/shared.module';
+import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { TestComponent } from './test/test.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,16 +65,19 @@ import { SharedModule } from './shared/shared.module';
     OrderConfirmationComponent,
     OrderDetailsComponent,
  
-    
+    TestComponent,
   ],
   imports: [
+    AppRoutingModule,
+    RouterModule,
+    CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+
     MatFormFieldModule,
     MatInputModule,
     MatButtonToggleModule,
     BrowserModule,
-    AppRoutingModule,
+
     BrowserAnimationsModule,
     MatSelectModule,
     MatCardModule,
@@ -85,9 +90,10 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     ReactiveFormsModule,
     HttpClientModule ,
-  CommonModule,
+
   MatButtonModule,
   MatDividerModule,
+  NgbPaginationModule, NgbAlertModule,
   ],
   providers: [AuthGuardService,
    /*{

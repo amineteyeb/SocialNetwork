@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../service/auth/auth.service'; // Import your AuthService
 import { userregister } from '../model/userregister.model';
 import { Router } from '@angular/router';
 import { AlertService } from '../service/alert/alert.service';
+
 @Component({
   selector: 'app-register', // Make sure this selector matches the HTML element where you want to render this component
   templateUrl: './register.component.html', // Replace with the correct path to your HTML template
-  styleUrls: ['./register.component.css'], // Replace with the correct path to your CSS file
+  styleUrls: ['./register.component.css'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class RegisterComponent {
   signUpFormModel: userregister = {

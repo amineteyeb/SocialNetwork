@@ -4,10 +4,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Subject } from 'rxjs';
 const TOKEN_KEY = 'auth-token';
 const USER_KEY = 'auth-user';
+
 @Injectable({
   providedIn: 'root'
 })
 export class TokenStorageService {
+  
   public _authenticatedUser: any;
   set user(data) {
     this._authenticatedUser = data

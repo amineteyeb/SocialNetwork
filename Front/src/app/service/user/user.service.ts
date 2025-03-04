@@ -25,5 +25,9 @@ export class UserService {
     const url = `${this.URL}/user/${id}`;
     return this.httpClient.get<User>(url);
   }
+  updateUserSettings(userId: string, theme: string): Observable<any> {
+    const url = `${this.URL}/api/user/updateTheme/${userId}`; // Use path variable for userId
+    return this.httpClient.put<any>(url, theme); // Send theme in the request body
+}
 
 }

@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { Observable, of } from 'rxjs';
 import { Product } from '../../model/product.model';
 import { ProductServiceService } from './product-service.service';
-import { ImageProcessingService } from '../../image-processing.service'
+import { ImageProcessingService } from '../files/image-processing.service'
 import { map } from 'rxjs/operators';
 
 @Injectable({

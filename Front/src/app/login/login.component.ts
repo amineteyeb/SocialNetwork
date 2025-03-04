@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AuthService } from '../service/auth/auth.service';
 import { TokenStorageService } from '../service/token/token-storage.service';
 import { Router } from '@angular/router';
 import { Token } from '@angular/compiler';
 import { User } from '../model/user.model';
 import { empty } from 'rxjs';
+import { UsersettingService } from '../service/user/usersetting.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class LoginComponent  {
  
@@ -31,7 +33,7 @@ export class LoginComponent  {
 token : string ='' ;
 
 
-  constructor(private authService: AuthService,
+  constructor(private UserSettings:UsersettingService,private authService: AuthService,
               private tokenStorage: TokenStorageService,
               private router : Router,
               ) {
@@ -63,7 +65,7 @@ token : string ='' ;
         this.isLoggedIn = true;
         console.log("type is"+data.access_token);
       
-     
+       this.getuser(data.access_token)
        
         console.log("user is"+JSON.stringify(this.tokenStorage.getUser()));
       // console.log(this.connectedUser+"this is the user")
@@ -93,6 +95,8 @@ token : string ='' ;
        
         this.tokenStorage.saveUser(user);
         this.connectedUserinfo=user;
+        console.log(user.theme);
+        this.UserSettings.setTheme(user.theme.toLowerCase());
         //console.log(JSON.stringify(this.tokenStorage.getUser())+"user from login");
       },
       (error:any) => {

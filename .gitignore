@@ -1,9 +1,9 @@
 HELP.md
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-*.mdj
+!Backend/.mvn/wrapper/maven-wrapper.jar
+!**Backend/src/main/**/target/
+!**Backend/src/test/**/target/
+!*.mdj
 ### STS ###
 .apt_generated
 .classpath
@@ -30,4 +30,8 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
-.vscode/
+Frontend/.vscode/
+
+### node###
+Frontend/node_modules/
+FileStorageNodeJsServer/node_modules/

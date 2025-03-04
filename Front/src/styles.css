@@ -2,3 +2,17 @@
 /* PrimeNG */
 
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+
+/* Light theme (default) */
+/* Light theme (default) */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+input, button, select, textarea, optgroup, option {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}

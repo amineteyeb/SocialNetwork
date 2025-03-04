@@ -1,1 +1,40 @@
-<p>sidebar works!</p>
+<div class="fs_menu_overlay" (click)="closeSidebar()"></div>
+
+<div class="hamburger_menu">
+    <div class="hamburger_close" (click)="closeSidebar()">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </div>
+    <div class="logo">
+        <a  href="#" class="brand">Social<span>Network</span></a>
+        
+    </div>
+    <div class="hamburger_menu_content">
+    
+
+        <!-- User Info (Centered) -->
+        <div class="sidebar-profile">
+            <img class="profile-img" 
+                 [src]="user.photo || generateAvatarUrl(user.email)" 
+                 alt="Profile">
+            <div class="profile-details">
+                <div class="profile-name">{{ user.username }}</div>
+                <div class="profile-status" [ngClass]="user.role === 'SELLER' ? 'badge-seller' : 'badge-client'">
+                    {{ user.role | titlecase }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <ul class="menu_top_nav">
+            <li class="menu_item"><a href="#"><i class="fas fa-home"></i> Home</a></li>
+            <li class="menu_item"><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+            <li class="menu_item"><a href="#"><i class="fas fa-store"></i> Marketplace</a></li>
+            <li *ngIf="sellerFlag" class="menu_item">
+                <a href="#"><i class="fas fa-box"></i> My Products</a>
+            </li>
+            <li *ngIf="!sellerFlag" class="menu_item">
+                <a href="#"><i class="fas fa-upload"></i> Sell Products</a>
+            </li>
+        </ul>
+    </div>
+</div>

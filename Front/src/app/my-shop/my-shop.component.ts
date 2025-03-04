@@ -1,6 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { ShopService } from '../service/shop/shop.service';
-import { ImageProcessingService } from '../image-processing.service';
+import { ImageProcessingService } from '../service/files/image-processing.service';
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../service/token/token-storage.service';
 import { NONE_TYPE } from '@angular/compiler';

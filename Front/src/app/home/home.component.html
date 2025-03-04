@@ -1,9 +1,114 @@
-<app-nav></app-nav>
-<body>
-   
-    <div class="background-image"></div>
-    <div class="content-container2">
-     <app-product-add></app-product-add>
-    
+
+<div class="marketplace-container">
+  <!-- Marketplace Header -->
+  <div class="marketplace-header">
+    <i class="fa fa-shopping-cart"></i>
+    <h1>Marketplace</h1>
+  </div>
+
+  <div class="row">
+    <!-- Filters Column -->
+    <div class="col-lg-3">
+      <div class="filters-container">
+        <!-- Categories Filter -->
+        <div class="filter-group">
+          <h4 class="filter-group-title">Categories</h4>
+          <div *ngFor="let category of categories" class="custom-checkbox">
+            <input type="checkbox" [id]="'category-' + category.id"
+                   [checked]="selectedCategories.has(category.id)"
+                   (change)="toggleCategoryFilter(category.id)">
+            <span class="checkmark"></span>
+            <label [for]="'category-' + category.id">
+              {{ category.name }} ({{ category.count }})
+            </label>
+          </div>
+        </div>
+
+        <!-- Price Filter -->
+        <div class="filter-group">
+          <h4 class="filter-group-title">Price Range</h4>
+          <div class="price-range">
+            <input type="number" [(ngModel)]="priceRange[0]" (input)="updatePriceFilter()" min="0">
+            <input type="number" [(ngModel)]="priceRange[1]" (input)="updatePriceFilter()" min="0">
+          </div>
+        </div>
+
+        <!-- Color Filter -->
+        <div class="filter-group">
+          <h4 class="filter-group-title">Colors</h4>
+          <div class="color-grid">
+            <div *ngFor="let color of colors" class="color-swatch"
+                 [style.backgroundColor]="color.code"
+                 [class.selected]="selectedColors.has(color.code)"
+                 (click)="toggleColorFilter(color.code)">
+              <i class="fas fa-check" *ngIf="selectedColors.has(color.code)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </body>
+
+    <!-- Products Column -->
+    <div class="col-lg-9">
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="total-products">
+          Showing {{ showingProducts }} products
+        </div>
+        <div class="sorting">
+          <select class="form-select" [(ngModel)]="sortOption">
+            <option value="popular">Popular</option>
+            <option value="priceLowHigh">Price: Low to High</option>
+            <option value="priceHighLow">Price: High to Low</option>
+            <option value="newest">New Arrivals</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="product-grid">
+        <div class="product-card" *ngFor="let product of paginatedProducts" [@fadeIn]>
+          <div class="product-image">
+            <img [src]="product.image" [alt]="product.name" loading="lazy">
+            <div class="product-badges">
+              <span class="badge discount" *ngIf="product.discount">
+                {{ product.discount }}% OFF
+              </span>
+              <span class="badge new" *ngIf="product.isNew">NEW</span>
+            </div>
+          </div>
+          <div class="product-details">
+            <h3 class="product-title">{{ product.name }}</h3>
+            <div class="product-price">
+              <span class="current-price">{{ product.price | currency }}</span>
+              <span class="original-price" *ngIf="product.originalPrice">
+                {{ product.originalPrice | currency }}
+              </span>
+            </div>
+            <div class="product-actions">
+              <button class="btn wishlist" (click)="toggleWishlist(product.id)">
+                <i class="far fa-heart" [class.fas]="isInWishlist(product.id)"></i>
+              </button>
+              <button class="btn add-to-cart" (click)="addToCart(product)">
+                <i class="fas fa-shopping-cart"></i>
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination-container" *ngIf="filteredProducts.length > pageSize">
+        <ngb-pagination [collectionSize]="filteredProducts.length" 
+                       [(page)]="currentPage" 
+                       [pageSize]="pageSize"
+                       [maxSize]="5"
+                       [rotate]="true"
+                       (pageChange)="updatePagination()"
+                       ariaLabel="Product pagination">
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,7 +17,8 @@
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -25,13 +26,23 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
-              
-             
+              "src/styles.css",
+              "src/assets/styles/bootstrap.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/assets/styles/main_styles.css",
+              "src/assets/styles/responsive.css",
+              "src/assets/styles/style.css"
+          
             ],
             "scripts": [
-
+          "src/assets/scripts/jquery-3.2.1.min.js",
+          "src/assets/scripts/popper.js",
+          "src/assets/scripts/bootstrap.min.js",
+          "src/assets/scripts/custom.js"
+             
           ]
+    
+
           },
           "configurations": {
             "production": {
@@ -39,13 +50,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "25kb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "30kb",
+                  "maximumError": "20kb"
                 }
               ],
               "outputHashing": "all"
@@ -85,7 +96,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [

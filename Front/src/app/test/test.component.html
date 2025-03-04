@@ -1,0 +1,142 @@
+<div class="container mt-5 ">
+    <h1 >Test File Upload</h1>
+  
+    <!-- Single File Upload Section -->
+    <div class="upload-section">
+      <h2>Upload Single File</h2>
+      <input type="file" (change)="onSingleFileSelected($event)" />
+      <button class="upload-button" (click)="onSingleFileUpload()" [disabled]="isUploading">
+        Upload Single File
+      </button>
+      <div *ngIf="isUploading" class="loading">
+        Uploading...
+      </div>
+      <div *ngIf="uploadSuccess" class="success-message">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </div>
+  
+    <!-- Multiple File Upload Section -->
+    <div class="upload-section">
+      <h2>Upload Multiple Files</h2>
+      <input type="file" multiple (change)="onMultipleFilesSelected($event)" />
+      <button class="upload-button" (click)="onMultipleFilesUpload()" [disabled]="isUploading">
+        Upload Multiple Files
+      </button>
+      <div *ngIf="isUploading" class="loading">
+        Uploading...
+      </div>
+      <div *ngIf="uploadSuccess" class="success-message">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+    </div>
+    <video #videoPlayer class="video-player" controls>
+      Your browser does not support the video tag.
+    </video>
+    <!-- Uploaded Files Display -->
+    <div class="uploaded-files">
+      <h2>Uploaded Files</h2>
+      <div *ngFor="let file of uploadedFiles; let i = index" class="file">
+        <div *ngIf="isImage(file)">
+          <img [src]="displayFile(file)" alt="Uploaded Image" class="uploaded-image" />
+        </div>
+        <div *ngIf="isVideo(file)">
+          <div class="video-player-container">
+            <!-- Video element -->
+            <video #videoPlayer [id]="'video' + i" class="video-player"
+            (loadedmetadata)="onVideoLoaded(i)"
+            (timeupdate)="updateProgress(i)"
+            (click)="togglePlayPause(i)" 
+            [src]="videoUrls[i]"  
+            controls>
+       Your browser does not support the video tag.
+     </video>
+        
+            <!-- Logo -->
+            <div class="video-logo">
+              <img src="../../assets/cover.png" alt="Your Logo" />
+            </div>
+        
+            <!-- Middle Controls -->
+            <div class="middle-controls">
+              <button class="control-button rewind" (click)="rewind(i, 10)">
+                <i class="fas fa-undo-alt"></i>
+              </button>
+              <button class="control-button play-pause" (click)="togglePlayPause(i)">
+                <i class="fas" [ngClass]="{'fa-play': !isPlaying[i], 'fa-pause': isPlaying[i]}"></i>
+              </button>
+              <button class="control-button fast-forward" (click)="fastForward(i, 10)">
+                <i class="fas fa-redo-alt"></i>
+              </button>
+            </div>
+        
+            <!-- Bottom Controls -->
+            <div class="bottom-controls">
+              <div class="progress-container">
+                <div class="progress-bar">
+                  <input
+                  type="range"
+                  min="0"
+                  [max]="videoDuration[i]"
+                  [(ngModel)]="currentTime[i]"
+                  (change)="seekVideo(i, currentTime[i])"
+                />
+                
+                  <div class="progress-buffer" [style.width]="bufferProgress[i] + '%'"></div>
+                  <div class="progress-played" [style.width]="(currentTime[i] / videoDuration[i]) * 100 + '%'"></div>
+                </div>
+                <div class="progress-time">
+                  {{ formatTime(currentTime[i]) }} / {{ formatTime(videoDuration[i]) }}
+                </div>
+              </div>
+        
+              <!-- Fullscreen Button -->
+              <button class="control-button fullscreen" (click)="toggleFullscreen(i)">
+                <i class="fas fa-expand"></i>
+              </button>
+        
+              <!-- Settings Menu -->
+              <div class="settings-menu">
+                <button class="control-button settings-button" (click)="toggleSettingsMenu(i)">
+                  <i class="fas fa-cog"></i>
+                </button>
+        
+                <div class="settings-dropdown" *ngIf="showSettingsMenu[i]">
+                  <div class="dropdown-section">
+                    <div class="dropdown-header"><i class="fas fa-video"></i> Quality</div>
+                    <div class="dropdown-item" (click)="changeQuality('360p', file, i)">360p</div>
+                    <div class="dropdown-item" (click)="changeQuality('480p', file, i)">480p</div>
+                    <div class="dropdown-item" (click)="changeQuality('720p', file, i)">720p</div>
+                    <div class="dropdown-item" (click)="changeQuality('1080p', file, i)">1080p</div>
+                  </div>
+        
+                  <div class="dropdown-section">
+                    <div class="dropdown-header"><i class="fas fa-play-circle"></i> Speed</div>
+                    <div class="dropdown-item" (click)="changePlaybackSpeed(0.5, i)">0.5x</div>
+                    <div class="dropdown-item" (click)="changePlaybackSpeed(1, i)">1x (Normal)</div>
+                    <div class="dropdown-item" (click)="changePlaybackSpeed(1.5, i)">1.5x</div>
+                    <div class="dropdown-item" (click)="changePlaybackSpeed(2, i)">2x</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+          
+          
+          
+  
+        <div *ngIf="!isImage(file) && !isVideo(file)">
+          <p>{{ file }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

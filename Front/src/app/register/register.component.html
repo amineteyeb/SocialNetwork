@@ -4,7 +4,7 @@
 		<form name="signUpForm" (ngSubmit)="signUpForm.valid && onSubmit()" #signUpForm="ngForm" novalidate>
 			<h1>Create Account</h1>
 			<span>Register Account</span>
-			
+
 			  <input matInput [(ngModel)]="signUpFormModel.firstname" name="firstname" required placeholder="First Name" />
 			
 			
@@ -15,8 +15,10 @@
 			
 			
 			  <input matInput [(ngModel)]="signUpFormModel.password" name="password" type="password" required placeholder="Password" />
-			
-			<mat-form-field>
+			<br>
+			<mat-form-field style='width :100%'>
+        <mat-label>Select account type: </mat-label>
+
 			  <mat-select [(ngModel)]="signUpFormModel.role" name="role" required  placeholder="Choose role">
 				<mat-option value="SELLER">Seller</mat-option>
 				<mat-option value="CLIENT">Client</mat-option>
